@@ -14,6 +14,10 @@ urlpatterns = [
     path('logout/', authview.logoutpage,name="logout"),
 
     path('add-to-cart' ,cart.addtocart , name="addtocart"),
+    path('cart',cart.cartview,name="cart"),
+    path('update-cart',cart.updatecart, name="updatecart"),
+
+
 
 
 
