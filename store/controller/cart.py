@@ -43,7 +43,7 @@ def updatecart(request):
         
         if(Cart.objects.filter(user=request.user, product_id=prod_id )):
             prod_qty = int(request.POST.get('product_qty')) #4
-            cart = Cart.objects.filter(product_id=prod_id,user=request.user)
+            cart = Cart.objects.get(product_id=prod_id,user=request.user)
             cart.product_qty = prod_qty
             cart.save()
     return redirect("/")          
