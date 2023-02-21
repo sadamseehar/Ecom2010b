@@ -5,9 +5,9 @@ from django.http.response import JsonResponse
 from store.models import Product,Cart,WhishList
 
 
-from django.contrib.auth.decorators import login_required 
+# from django.contrib.auth.decorators import login_required 
 
-@login_required(login_url = "loginpage")
+# @login_required(login_url = "loginpage")
 
 def index(request):
     wishlist = WhishList.objects.filter(user=request.user)
