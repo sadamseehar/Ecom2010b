@@ -6,24 +6,25 @@
 <div class="py-3 bg-primary">
     <div class="container">
         <a class="text-white" href=" {% url 'home' %}">Home /</a>
-        <a class="text-white" href=" {% url 'cart' %}">Cart</a>
+        <a class="text-white" href=" {% url 'cart' %}">wishlist</a>
         
     </div>
 </div>
 
-<!-- {% if message %}
-{{ message.success }}
 
-  
-{% endif %} -->
+
+
+
+
+
 <div class="container">
     <div class="row">
         <div class="col-md-12">
             <div class="card shadow">
-                <div class="card-body cartdata">
+                <div class="card-body wishdata">
 
-                    {% if cart %}
-                        {% for item in cart %}
+                    {% if wishlist %}
+                        {% for item in wishlist %}
                             <div class="row product_data">
                                 <div class="col-md-2 my-auto">
                                     <img src="{{ item.product.product_image.url }}" height="70px" width="70px" alt="" srcset="">
@@ -37,24 +38,19 @@
                                 <div class="col-md-3 my-auto">
                                     <input type="hidden" name="" class="prod_id" value="{{ item.product_id }}">
                                     {% csrf_token %}
-                                    {% if item.product.quantity >= item.product_qty %}
-                                    <div class="input-group text-center mb-3" style="width: 130px;">
-                                        <button class="input-group-text changeQuantity decrement-btn">-</button>
-                                        <input type="text" class="text-center form-control qty-input" value="{{ item.product_qty }}">
-                                        <button class="input-group-text changeQuantity increment-btn">+</button>
-                                    </div>
-                                    {% else %}
-                                    <h5>Out of stock</h5>
-                                    {% endif %}
+                                   
+                                   
+                                    <a href="{% url 'productview' item.product.category.slug item.product.slug %}" class="btn btn-primary">show product</a>
+                                   
+                                    
                                 </div>
                                 <div class="col-md-2 my-auto">
-                                    <button class="btn btn-danger delete-cart-item">Remove</button>
+                                    <button class="btn btn-danger delete-wishlist-item">Remove</button>
                                 </div>
                             </div>
-                        {% endfor %}
-                        <a href="{% url 'checkout' %}" class="btn btn-success">Checkkout</a>
+                            {% endfor %}
                     {% else %}
-                        <h1>cart is empty</h1>  
+                        <h1>wishlist is empty</h1>  
                     {% endif %}
                 
                     
@@ -64,4 +60,5 @@
     </div>
 
 </div>
+
 {% endblock content %}
